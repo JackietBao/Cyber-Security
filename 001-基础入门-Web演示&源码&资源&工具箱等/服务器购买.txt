@@ -1,0 +1,4 @@
+iis镜像的自行购买搭建
+
+sqlserver镜像：
+https://market.aliyun.com/products/56024006/cmjj012194.html?spm=5176.imagesearch.917781.1.7cbcuSncuSncbC
