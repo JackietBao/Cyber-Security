@@ -1,0 +1,17 @@
+双向认证：
+1.
+服务端证书：server.cer server.key intermediate.crt rootCA.crt
+客户端证书：client.pfx rootCA.crt
+
+2.
+服务端证书：server-chain.crt(server.cer intermediate.crt rootCA.crt)
+                     server.key
+                     rootCA.crt
+客户端证书：client.pfx rootCA.crt
+
+3.
+服务端证书：chain.crt(intermediate.crt rootCA.crt)
+	     rootCA.crt
+                     server.cer
+                     server.key
+客户端证书：client.pfx rootCA.crt
