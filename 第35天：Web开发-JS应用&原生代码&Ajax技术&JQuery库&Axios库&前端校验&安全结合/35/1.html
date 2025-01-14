@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<script type="text/javascript">-->
+<!--    //原生ajax demo案例-->
+<!--    var xhttp = new XMLHttpRequest();-->
+<!--    xhttp.open("GET", "1.txt", true);-->
+<!--    xhttp.send();-->
+<!--    xhttp.onreadystatechange = function() {-->
+<!--        if (xhttp.readyState == 4 && xhttp.status == 200){-->
+<!--            console.log(xhttp.responseText);-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
+
+<!--<script src="https://code.jquery.com/jquery-3.7.1.js"></script>-->
+<!--<script src="jquery-3.7.1.min.js"></script>-->
+<!--<script>-->
+<!--    //采用jQuery库实现ajax技术-->
+<!--    $.ajax({-->
+<!--        method: "GET",-->
+<!--        url:"1.txt",-->
+<!--        dataType: "text",-->
+<!--        success: function(response){-->
+<!--            console.log(response);-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+
+
+<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+<script src="axios.min.js"></script>
+<script>
+    // axios({
+    //     method: 'GET',
+    //     url: '1.txt',
+    // }).then(function (response) {
+    //     console.log(response.data);
+    // })
+
+    axios.get('1.txt').then(function (response) {console.log(response.data);})
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
