@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--远程引用-->
+<!--    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>-->
+<!--本地引用-->
+<script src="jquery-3.7.1.min.js"></script>
+<script>
+    //采用jQuery库实现ajax技术
+    $.ajax({
+        method: "GET",
+        url: "1.txt",
+        dataType: "text",
+        success: function(response){
+            console.log(response);
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

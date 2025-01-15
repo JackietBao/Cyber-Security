@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+<script src="axios.min.js"></script>
+<script>
+    // axios({
+    //     method: 'GET',
+    //     url: '1.txt',
+    // }).then(function (response) {
+    //     console.log(response.data);
+    // })
+
+    axios.get('1.txt').then(function (response) {console.log(response.data);})
+
+</script>
+</body>
+</html>

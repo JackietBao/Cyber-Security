@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="file.php" method="post" enctype="multipart/form-data">
+    选择文件：<input type="file" name="file_upload" onchange="checkFile(this.value)">
+    <input type="submit" value="上传">
+</form>
+
+<script src="jquery-3.7.1.min.js"></script>
+<script>
+    function checkFile(filename) {
+        //x.jpg 白名单校验
+        var exts=['png','jpg','jpeg','gif','bmp','mpeg'];
+        var index=filename.lastIndexOf(".");
+        var ext = filename.substr(index+1);
+        for (var i=0;i<exts.length;i++){
+            if(ext==exts[i]){
+                alert('文件正确！');
+                break;
+                //正确上传文件逻辑代码在下面
+            }else{
+                alert('非法文件！');
+                window.location.replace("file.html")
+                break;
+            }
+        }
+    }
+</script>
