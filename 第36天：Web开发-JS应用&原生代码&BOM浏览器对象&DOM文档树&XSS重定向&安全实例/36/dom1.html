@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<a id="a">点我</a>
+
+<img src="dasdsad" onerror="javascript:alert(1)"></img>
+
+<script type="text/javascript">
+    //实现：获取用户访问的url里面的域名，将其作为点我的触发链接
+
+    // var url=window.location.hash;
+    // var urls=url.substring(1);
+    // console.log(url);
+    // console.log(urls);
+    // document.getElementById("a").href=urls;
+    // // a.setAttribute("href","http://www.baidu.com");
+
+
+    // var hash = location.hash;
+    // console.log(hash);
+    // if(hash){
+    //   var url = hash.substring(1);
+    //   console.log(url);
+    //   location.href = url;
+    // }
+
+
+      var hash = location.hash;
+      console.log(hash);
+      if(hash){
+        var url = hash.substring(1);
+        console.log(url);
+        document.write(decodeURI(url));
+      }
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
