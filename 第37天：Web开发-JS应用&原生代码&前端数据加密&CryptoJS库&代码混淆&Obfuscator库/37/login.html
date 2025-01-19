@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>后台登录</title>
+  <style>
+    body {
+      background-color: #f1f1f1;
+    }
+    .login {
+      width: 400px;
+      margin: 100px auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      padding: 30px;
+    }
+    .login h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    .login label {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+    .login input[type="text"], .login input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    .login input[type="submit"] {
+      background-color: #2ecc71;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .login input[type="submit"]:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+<div class="login">
+  <h2>后台登录</h2>
+  <label for="username">用户名:</label>
+  <input type="text" name="username" id="username" class="user" >
+  <label for="password">密码:</label>
+  <input type="password" name="password" id="password" class="pass" >
+  <button>登录</button>
+</div>
+<script src="jquery.js"></script>
+<script src="crypto-js.js"></script>
+
+<script>
+
+
+  $("button").click(function (){
+
+    var passstr=$('.pass').val();
+    var aseKey = "aeskey"
+    var aespassstr = CryptoJS.AES.encrypt(passstr, CryptoJS.enc.Utf8.parse(aseKey),  // 参数1=密钥, 参数2=加密内容
+            {
+              mode: CryptoJS.mode.ECB, // 为DES的工作方式
+              padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+            }
+    ).toString();
+
+
+    //console.log(aesstr);
+    $.ajax({
+      type: 'POST',
+      url: 'login.php',
+      data: {
+        username:$('.user').val(),
+        password:aespassstr
+      },
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        if (data['infoCode']==1){
+          alert('登录成功!');
+        }else{
+          alert('登录失败!');
+        }
+      }
+
+    });
+
+  });
+</script>

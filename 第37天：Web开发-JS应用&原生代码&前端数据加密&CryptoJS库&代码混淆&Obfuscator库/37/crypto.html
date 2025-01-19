@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="crypto-js.js"></script>
+<script src="jsencrypt.js"></script>
+<script>
+  var str="xiaodisec";
+
+  //base64编码
+  var base64str=window.btoa(str);
+  console.log(base64str);
+
+
+  //MD5加密
+  var md5str=CryptoJS.MD5(base64str).toString();
+  console.log(md5str);
+
+  //SHA1加密
+  var shastr = CryptoJS.SHA1(str).toString(); // 注意：1是数字1
+  console.log(shastr)
+
+  //HMAC加密
+  var key = 'key';
+  var hash = CryptoJS.HmacSHA256(key, str);
+  var HMACstr = CryptoJS.enc.Hex.stringify(hash);
+  console.log(HMACstr);
+
+  // 使用AES进行加密
+  var aseKey = "aeskey"     // 定制秘钥，长度必须为：8/16/32位, 长度不一致也没问题
+  // 加密 DES/AES切换只需要修改 CryptoJS.AES <=> CryptoJS.DES
+  var aesstr = CryptoJS.AES.encrypt(str, CryptoJS.enc.Utf8.parse(aseKey),  // 参数1=密钥, 参数2=加密内容
+          {
+            mode: CryptoJS.mode.ECB,// 为AES的工作方式
+            padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+          }
+  ).toString(); // toString=转字符串类型
+  console.log(aesstr); // 在弹窗中打印字符串
+
+  // 使用DES进行加密
+  var deskey = "deskey"     // 定制秘钥，长度必须为：8/16/32位， 长度不一致也没问题
+  // 需要加密的内容
+  // 加密 DES/AES切换只需要修改 CryptoJS.AES <=> CryptoJS.DES
+  var desstr = CryptoJS.DES.encrypt(str, CryptoJS.enc.Utf8.parse(deskey),  // 参数1=密钥, 参数2=加密内容
+          {
+            mode: CryptoJS.mode.ECB, // 为DES的工作方式
+            padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+          }
+  ).toString(); // toString=转字符串类型
+  console.log(desstr); // 控制台打印 CDVNwmEwDRM
+
+  //RSA加密
+  var PUBLIC_KEY='-----BEGIN PUBLIC KEY-----\n' +
+          'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx4RhaeXjBM+2CrWPNPXc\n' +
+          '1NKN1+kKHHdBL5rMDzH6RAAx3KClHSjavq/vvWRDbyIOGWIaQdyiq5KBXlvJ/B7J\n' +
+          'vnvrduGY7wCjUb6J5RNLiUxAvyX2wm6QHaRjy5jJjCEr2ZL4F9tzdFX5Bfl+vxHs\n' +
+          '3cBlvf0d39ZpQNA+SEoP5UK51hUWtnM3m/lkzSvW4zZ8fV4GrbNOnP7fYeK4SltX\n' +
+          'KQQjYCbgxX5erwn4NeQRfr6VIk3tT66Jr1qM/uQwDzPhDmBI3UlebMJsCtXHvIVs\n' +
+          'mObJInFTwlT9MoEDyoGAhD6AiPhUjVQMG2rI/DlZ7q18WQIIGO3Hmo28b8PTeO5v\n' +
+          'MQIDAQAB\n' +
+          '-----END PUBLIC KEY-----\n'
+
+  var PRIVATE_KEY='-----BEGIN PRIVATE KEY-----\n' +
+          'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHhGFp5eMEz7YK\n' +
+          'tY809dzU0o3X6Qocd0EvmswPMfpEADHcoKUdKNq+r++9ZENvIg4ZYhpB3KKrkoFe\n' +
+          'W8n8Hsm+e+t24ZjvAKNRvonlE0uJTEC/JfbCbpAdpGPLmMmMISvZkvgX23N0VfkF\n' +
+          '+X6/EezdwGW9/R3f1mlA0D5ISg/lQrnWFRa2czeb+WTNK9bjNnx9Xgats06c/t9h\n' +
+          '4rhKW1cpBCNgJuDFfl6vCfg15BF+vpUiTe1PromvWoz+5DAPM+EOYEjdSV5swmwK\n' +
+          '1ce8hWyY5skicVPCVP0ygQPKgYCEPoCI+FSNVAwbasj8OVnurXxZAggY7ceajbxv\n' +
+          'w9N47m8xAgMBAAECggEBAJLKyUk6xE6T7CHw9w5GHlXPHGFQqgnLjABUafJ8GN/T\n' +
+          'LNxgrVrI5jgKBd9YV2z6p1jxntP6WwzU263q5q9Cj7hAQDvVO8oMtBy+jYInMhow\n' +
+          'Kir46Zaf9hR5EJuJLDCXb0XDJhmXcliTsIY+zIwTyixVFAY2prY7cHEpRcm2A//u\n' +
+          'TWOr2Q9NuPyKhuoSTkVN2uJqKIWTOFt7rYVicHzWr9X2ImdHdUoxXpsrwJHulrGO\n' +
+          'p3J3Nr46VyTjsgk15KQWqfeo6skWfPps9uiG7dHG+Jt35yfHkEBvEkSIBw1MXuRc\n' +
+          'oh9l1v7Y8mj1uK2B64CfDnifig+VPcg70qpjQr3ATGECgYEA5goH+vPzIzDdy4pS\n' +
+          'UTE2eWcdfH+0VRinh9MxI/mREichTr4FWiSfPhwecay/i2ccadNIiiokfBWIwfyU\n' +
+          '42ZNV5QUP83ZJcAXSUgQ1haJ1yRgHEN7kb2Q1y0H34m5/rCSVGUzLB3AQ5ptNtU6\n' +
+          'JdyvAX2Bqm6aBuICNBjlo23QRr0CgYEA3giMa283OZ+++hZnsNRZnAXcwNhGUgHf\n' +
+          'SNsX89JZoCRainzkj/l35rCeLqNPnDBC15OJ0GcaNmE4AE8Ms410n0EiHIYdKeDO\n' +
+          'K2gsc17AAybnDjj1RO7y60WLFsglco27PMdWOZorC/7D53GZUGh1Af1KDIYcgijp\n' +
+          'V3uWPeJu24UCgYBVJ3l0yEFE0Z4I7pcyPwlvP2CG6a8ToSDDAsa6DnRJR/robycE\n' +
+          'C3J3R2ltowj0zaKS+gdsPdVrqX0KcjmbRA91T/d+9vBfLRBxrB+vYIB+B5UcYU6o\n' +
+          '0IeBX8X+VbloMmy4mQ2sUwcM/2lWVvBDe8G8x3zsXizeR2ORbXX0XX4v8QKBgFn/\n' +
+          'FQum9LeCrKIp2rWuHPRE3Am+oCI1aA/b3oWRyYpDsf9YSDyjXZpAFJ3KzEX+udkv\n' +
+          'kDjM0a8hENXvNLLCr3atq+nr4n5LBMZLX1kUGrgsWJNHOwNJ52S9t3bwgV1BXZdx\n' +
+          'JN4MQ06FYVq6jO4uqN65j/4rjfqkIpC3I1rKIS0RAoGAJeeonwQmcXFPvIjMtpJl\n' +
+          'yHcRKWvCyIR2IAg/8pBEsAa2pknFMrR5psJId57F15ND5jf1MAtHUBdmTQ2A04y6\n' +
+          'yvMHacFgBpsLH1rE5meCRUGOUN00z6cwbZsRulinDd9YuNTkalJ6dxZfsvEx5sJ+\n' +
+          'akHZ6hneq3bbvlFqcC8gB4g=\n' +
+          '-----END PRIVATE KEY-----\n'
+
+  //公钥加密
+  var encrypt = new JSEncrypt();//实例化加密对象
+  encrypt.setPublicKey(PUBLIC_KEY);//设置公钥
+  var encrypted = encrypt.encrypt(str);//对指定数据进行加密
+  console.log(encrypted);
+
+  //私钥解密
+  var decrypt = new JSEncrypt(); // 创建解密对象
+  decrypt.setPrivateKey(PRIVATE_KEY); //设置私钥
+  var uncrypted = decrypt.decrypt(encrypted); //解密 'xiaodisec'
+  console.log(uncrypted);
+
+</script>
+
+
+
+</body>
+</html>
