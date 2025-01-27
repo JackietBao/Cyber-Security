@@ -105,7 +105,7 @@ Access、MYSQL、SqlServer、Oracle、
 Redis、DB2、Postgresql、MongoDB等
 2、本地数据库：本地服务器搭建
 3、分离数据库：另外的服务器搭建
-4、云数据库：RDS等
+4、云数据库：RDS等（Relational Database Service）
 
 #平台差异-中间件类型&系统类型&容器类型
 1、系统：Windows、Linux、MacOS等
