@@ -1,17 +1,28 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>上传LOGO</title>
+    <!-- 设置文档字符编码为UTF-8，支持中文显示 -->
+    <meta charset="utf-8" />
+    <!-- 设置IE浏览器的兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 页面标题 -->
+    <title>上传LOGO</title>
 </head>
 <body>
-
-<form method="post" action="http://192.168.1.4:84/admin/?a=call&m=upLoad" enctype="multipart/form-data" style="text-align:center;margin:30px;">
-	<input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
-	<input type="file" name="pic" />
-	<input type="submit" name="send" value="确定上传" />
-</form>
-
+    <!-- 
+    文件上传表单
+    method="post": 使用POST方法提交表单
+    action: 指定表单提交的目标URL
+    enctype="multipart/form-data": 必须设置此属性才能上传文件
+    style: 设置表单居中显示，上下边距30像素
+    -->
+    <form method="post" action="http://192.168.1.7:80/admin/?a=call&m=upLoad" enctype="multipart/form-data" style="text-align:center;margin:30px;">
+        <!-- 限制上传文件的最大大小为2MB (2097152字节) -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+        <!-- 文件选择输入框 -->
+        <input type="file" name="pic" />
+        <!-- 提交按钮 -->
+        <input type="submit" name="send" value="确定上传" />
+    </form>
 </body>
 </html>
