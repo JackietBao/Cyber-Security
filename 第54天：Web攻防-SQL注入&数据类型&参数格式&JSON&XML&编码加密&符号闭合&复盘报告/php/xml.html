@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .search-form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .search-form input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .search-form input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .search-form input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .news-list {
+      list-style: none;
+      padding: 0;
+    }
+    .news-list li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .news-list li:last-child {
+      border-bottom: none;
+    }
+    .news-list a {
+      text-decoration: none;
+      color: #007BFF;
+      font-size: 18px;
+    }
+    .news-list a:hover {
+      text-decoration: underline;
+    }
+    .news-detail {
+      padding: 20px;
+    }
+    .news-detail h2 {
+      color: #333;
+    }
+    .news-detail p {
+      color: #555;
+      line-height: 1.6;
+    }
+    .news-detail .meta {
+      color: #888;
+      font-size: 14px;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- 搜索表单 -->
+  <form class="search-form" id="searchForm">
+    <input type="text" name="keyword" placeholder="输入关键字搜索新闻">
+    <input type="submit" value="搜索">
+  </form>
+  <div id="newsContent"></div>
+</div>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const keyword = document.querySelector('input[name="keyword"]').value;
+    const xml = `
+            <data>
+                <id>0</id>
+                <keyword>${keyword}</keyword>
+            </data>
+        `;
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'xml.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/xml');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById('newsContent').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send(xml);
+  });
+
+  function getNewsDetail(id) {
+    const xml = `
+            <data>
+                <id>${id}</id>
+                <keyword></keyword>
+            </data>
+        `;
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'xml.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/xml');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById('newsContent').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send(xml);
+  }
+</script>
+</body>
+</html>
