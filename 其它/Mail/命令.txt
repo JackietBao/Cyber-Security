@@ -1,0 +1,4 @@
+#python .\fofa_api.py   -e 123456@qq.com  -k edjhhvv1j6ssfzcltl2tfq86scc116nx -t personal -p 20
+#python .\fofa_api.py   -e 123456@qq.com  -k edjhhvv1j6ssfzcltl2tfq86scc116nx -p 2 -s 2000 -t personal -w 10 -o output_filename
+#python .\fofa_api.py   -e 123456@qq.com  -k edjhhvv1j6ssfzcltl2tfq86scc116nx -p 2 -s 1000 -t default domain -w 10 -o output_filename
+fofa_scanner.exe -e 123456@qq.com  -k edjhhvv1j6ssfzcltl2tfq86scc116nx -p 5 -s 2000 -t specific_jp_emails -w 10 -o output_filename
