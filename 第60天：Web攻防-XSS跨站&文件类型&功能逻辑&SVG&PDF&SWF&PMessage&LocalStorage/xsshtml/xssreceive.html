@@ -1,0 +1,20 @@
+<!--xssreceive.html-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>受害方界面</title>
+  <meta charset="utf-8" />
+  <script>
+    // 添加事件监控消息
+    window.addEventListener("message", (event) => {
+      location.href = `${event.data.url}`;
+    });
+  </script>
+</head>
+
+<body>
+<h1>受害方界面（子窗口）</h1>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!--receive.html-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>接收界面</title>
+  <meta charset="utf-8" />
+  <script>
+    // 添加事件监控消息
+    window.addEventListener("message", (event) => {
+      let txt = document.getElementById("msg");
+      // 接收传输过来的变量数据
+      txt.value = `接收到的消息为：${event.data.content}`;
+    });
+  </script>
+</head>
+
+<body>
+<h1>接收界面（子窗口）</h1>
+<input type='text' id='msg' style='width: 400px; height: 50px;' />
+</body>
+
+</html>

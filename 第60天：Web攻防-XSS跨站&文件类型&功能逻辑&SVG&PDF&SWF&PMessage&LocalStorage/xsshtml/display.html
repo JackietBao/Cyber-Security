@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStorage 显示页面</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #displayArea {
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<h1>您输入的内容如下</h1>
+<div id="displayArea"></div>
+
+<script>
+  function showData() {
+    const data = localStorage.getItem('userData');
+    const displayDiv = document.getElementById('displayArea');
+    // 这里使用 innerHTML 会导致恶意脚本执行
+    displayDiv.innerHTML = `您输入的内容是：${data}`;
+  }
+
+  // 页面加载时显示数据
+  window.onload = showData;
+</script>
+</body>
+
+</html>

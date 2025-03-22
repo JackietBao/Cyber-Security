@@ -1,0 +1,27 @@
+<!--send.html-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>发送界面</title>
+    <meta charset="utf-8" />
+    <script>
+        function openChild() {
+            child = window.open('receive.html', 'popup', 'height=300px, width=300px');
+        }
+
+        function sendMessage() {
+            // 发送的数据内容
+            let msg = { content: "小迪安全 vx:heiren534901" };
+            // 发送消息到任意目标源
+            child.postMessage(msg, '*');
+        }
+    </script>
+</head>
+
+<body>
+<input type='button' id='btnopen' value='打开子窗口' onclick='openChild();' />
+<input type='button' id='btnSendMsg' value='发送消息' onclick='sendMessage();' />
+</body>
+
+</html>
